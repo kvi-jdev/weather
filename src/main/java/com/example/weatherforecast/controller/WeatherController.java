@@ -12,26 +12,16 @@ public class WeatherController {
 
     private WeatherService weatherService;
 
-    //@PathVariable annotation example
-    //localhost:8080/api/getWeatherByCity/bursa
     @GetMapping(path = "getWeatherByCity/{cityName}")
     public ResponseEntity<WeatherDto> getWeatherByCity(@PathVariable String cityName){
         return weatherService.getWeatherByCity(cityName);
     }
 
-
-    //@RequestParam annotation example
-    //localhost:8080/api/getPathWeatherByCity?countryName=Bursa
     @GetMapping(path = "getPathWeatherByCity")
     public ResponseEntity<CustomWeatherDto> getPathWeatherByCity(@RequestParam(value = "countryName")String countryName){
         return weatherService.getPathWeatherByCity(countryName);
     }
 
-    //@RequestBody annotation example
-    /*
-     * localhost:8080/api/getCustomWeatherByCity
-     * body= {"cityName":"bursa"}
-     */
     @PostMapping(path = "getCustomWeatherByCity")
     public ResponseEntity<CustomWeatherDto> getCustomWeatherByCity(@RequestBody CustomWeatherDto customWeatherDto){
         return weatherService.getCustomWeatherByCity(customWeatherDto);
